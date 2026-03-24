@@ -98,7 +98,7 @@ const featuredCollections = [
 
 export default function ProductShowcase() {
   const [visibleItems, setVisibleItems] = useState(new Set());
-  const refs = useRef([]);
+  const refs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const observers = refs.current.map((ref, index) => {
@@ -140,7 +140,7 @@ export default function ProductShowcase() {
           {featuredCollections.map((collection, index) => (
             <Link key={collection.id} href="/collections">
               <div
-                ref={el => refs.current[index] = el}
+                ref={el => { refs.current[index] = el; }}
                 className={`group relative overflow-hidden aspect-square transform transition-all duration-700 cursor-pointer ${
                   visibleItems.has(index) 
                     ? 'translate-y-0 opacity-100' 

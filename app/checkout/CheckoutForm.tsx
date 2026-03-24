@@ -37,7 +37,9 @@ export default function CheckoutForm() {
       setCartItems(cartStore.getCartItems());
     });
 
-    return unsubscribe;
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   // Add some sample items if cart is empty for demo

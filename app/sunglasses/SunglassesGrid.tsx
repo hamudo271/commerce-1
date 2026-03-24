@@ -5,6 +5,17 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { cartStore } from '../lib/cartStore';
 
+interface SunglassesProduct {
+  id: number;
+  name: string;
+  brand: string;
+  price: number;
+  salePrice: number;
+  image: string;
+  category: string;
+  features: string[];
+}
+
 const sunglassesCollection = [
   {
     id: 1,
@@ -72,14 +83,14 @@ const categories = ['all', 'aviator', 'wayfarer', 'round', 'sport', 'fashion'];
 
 export default function SunglassesGrid() {
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [hoveredItem, setHoveredItem] = useState(null);
-  const [animatingButtons, setAnimatingButtons] = useState(new Set());
+  const [hoveredItem, setHoveredItem] = useState<number | null>(null);
+  const [animatingButtons, setAnimatingButtons] = useState<Set<string>>(new Set());
 
   const filteredProducts = selectedCategory === 'all' 
     ? sunglassesCollection 
     : sunglassesCollection.filter(item => item.category === selectedCategory);
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (product: SunglassesProduct) => {
     setAnimatingButtons(prev => new Set([...prev, `cart-${product.id}`]));
     
     // Add to global cart store
@@ -100,7 +111,7 @@ export default function SunglassesGrid() {
     }, 600);
   };
 
-  const handleAddToWishlist = (product) => {
+  const handleAddToWishlist = (product: SunglassesProduct) => {
     setAnimatingButtons(prev => new Set([...prev, `wishlist-${product.id}`]));
     
     const productItem = {

@@ -44,7 +44,7 @@ export default function RegisterPage() {
                 className="relative block w-full border-b-2 border-gray-200 px-0 py-3 text-black placeholder-gray-400 focus:border-black focus:outline-none transition-colors"
                 placeholder="Full Name"
                 value={data.name}
-                onChange={(e) => setData({ ...data, name: e.target.value })}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData({ ...data, name: e.target.value })}
               />
             </div>
             <div>
@@ -54,7 +54,7 @@ export default function RegisterPage() {
                 className="relative block w-full border-b-2 border-gray-200 px-0 py-3 text-black placeholder-gray-400 focus:border-black focus:outline-none transition-colors"
                 placeholder="Email address"
                 value={data.email}
-                onChange={(e) => setData({ ...data, email: e.target.value })}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData({ ...data, email: e.target.value })}
               />
             </div>
             <div>
@@ -64,7 +64,7 @@ export default function RegisterPage() {
                 className="relative block w-full border-b-2 border-gray-200 px-0 py-3 text-black placeholder-gray-400 focus:border-black focus:outline-none transition-colors"
                 placeholder="Password"
                 value={data.password}
-                onChange={(e) => setData({ ...data, password: e.target.value })}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData({ ...data, password: e.target.value })}
               />
             </div>
           </div>

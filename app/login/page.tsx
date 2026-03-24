@@ -62,7 +62,7 @@ export default function LoginPage() {
                   className="block w-full border border-gray-300 bg-white rounded-md px-4 py-[14px] text-[15px] placeholder-gray-400 focus:border-black focus:ring-1 focus:ring-black outline-none transition-all"
                   placeholder="통합계정 또는 이메일"
                   value={data.email}
-                  onChange={(e) => setData({ ...data, email: e.target.value })}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData({ ...data, email: e.target.value })}
                 />
               </div>
               <div className="relative">
@@ -72,7 +72,7 @@ export default function LoginPage() {
                   className="block w-full border border-gray-300 bg-white rounded-md px-4 py-[14px] text-[15px] placeholder-gray-400 focus:border-black focus:ring-1 focus:ring-black outline-none transition-all pr-12"
                   placeholder="비밀번호"
                   value={data.password}
-                  onChange={(e) => setData({ ...data, password: e.target.value })}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setData({ ...data, password: e.target.value })}
                 />
                 <button 
                   type="button" 

@@ -4,6 +4,20 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { cartStore } from '../lib/cartStore';
+ 
+interface HandbagProduct {
+  id: number;
+  name: string;
+  brand: string;
+  category: string;
+  price: number;
+  salePrice: number;
+  image: string;
+  colors: string[];
+  isNew?: boolean;
+  isSale?: boolean;
+  features: string[];
+}
 
 const handbagProducts = [
   {
@@ -84,7 +98,7 @@ const categories = ["all", "tote", "crossbody", "clutch", "satchel", "shoulder",
 
 export default function HandbagsGrid() {
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [hoveredItem, setHoveredItem] = useState(null);
+  const [hoveredItem, setHoveredItem] = useState<number | null>(null);
   const [animatingButtons, setAnimatingButtons] = useState(new Set());
   const [wishlistItems, setWishlistItems] = useState(new Set());
   const [isClient, setIsClient] = useState(false);
@@ -108,7 +122,7 @@ export default function HandbagsGrid() {
     ? handbagProducts 
     : handbagProducts.filter(product => product.category === selectedCategory);
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (product: HandbagProduct) => {
     setAnimatingButtons(prev => new Set([...prev, `cart-${product.id}`]));
     
     cartStore.addToCart({
@@ -128,7 +142,7 @@ export default function HandbagsGrid() {
     }, 600);
   };
 
-  const handleAddToWishlist = (product) => {
+  const handleAddToWishlist = (product: HandbagProduct) => {
     setAnimatingButtons(prev => new Set([...prev, `wishlist-${product.id}`]));
     
     const productItem = {

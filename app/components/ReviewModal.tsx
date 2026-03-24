@@ -1,10 +1,25 @@
 
 'use client';
 
-export default function ReviewModal({ isOpen, onClose, reviews = [] }) {
+interface Review {
+  id: number;
+  text: string;
+  rating: number;
+  name: string;
+  title: string;
+  avatar?: string;
+}
+
+interface ReviewModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  reviews?: Review[];
+}
+
+export default function ReviewModal({ isOpen, onClose, reviews = [] }: ReviewModalProps) {
   if (!isOpen) return null;
 
-  const StarRating = ({ rating }) => {
+  const StarRating = ({ rating }: { rating: number }) => {
     return (
       <div className="flex space-x-1">
         {[1, 2, 3, 4, 5].map(star => (

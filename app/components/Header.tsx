@@ -85,8 +85,8 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center space-x-6">
-              <form onSubmit={(e) => { e.preventDefault(); if(searchQuery.trim()) router.push(`/search?q=${encodeURIComponent(searchQuery)}`); setSearchQuery(''); }} className="relative mr-4 pl-4 border-l border-gray-700">
-                <input type="text" placeholder="Search products..." value={searchQuery} onChange={(e)=>setSearchQuery(e.target.value)} className="bg-transparent border-b border-gray-600 text-white px-2 py-1 focus:outline-none focus:border-red-500 text-sm w-48 transition-colors placeholder-gray-400" />
+              <form onSubmit={(e: React.FormEvent) => { e.preventDefault(); if(searchQuery.trim()) router.push(`/search?q=${encodeURIComponent(searchQuery)}`); setSearchQuery(''); }} className="relative mr-4 pl-4 border-l border-gray-700">
+                <input type="text" placeholder="Search products..." value={searchQuery} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setSearchQuery(e.target.value)} className="bg-transparent border-b border-gray-600 text-white px-2 py-1 focus:outline-none focus:border-red-500 text-sm w-48 transition-colors placeholder-gray-400" />
                 <button type="submit" className="absolute right-0 top-1 text-gray-400 hover:text-white cursor-pointer transition-colors"><i className="ri-search-line"></i></button>
               </form>
 

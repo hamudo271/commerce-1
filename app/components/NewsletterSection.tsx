@@ -44,7 +44,7 @@ export default function NewsletterSection() {
             <input
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
               placeholder="Enter your email address"
               className="flex-1 px-6 py-4 text-lg border-0 bg-white/90 backdrop-blur-sm rounded-lg focus:outline-none focus:ring-4 focus:ring-red-600/50"
               required

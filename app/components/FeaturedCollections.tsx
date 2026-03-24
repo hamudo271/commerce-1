@@ -34,7 +34,7 @@ const collectionsData = [
 
 export default function FeaturedCollections() {
   const [visibleItems, setVisibleItems] = useState(new Set());
-  const refs = useRef([]);
+  const refs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const observers = refs.current.map((ref, index) => {
@@ -72,7 +72,7 @@ export default function FeaturedCollections() {
           {collectionsData.map((collection, index) => (
             <div
               key={collection.id}
-              ref={el => refs.current[index] = el}
+              ref={el => { refs.current[index] = el; }}
               className={`group relative overflow-hidden aspect-[3/4] cursor-pointer transform transition-all duration-700 hover:scale-110 hover:z-20 ${
                 visibleItems.has(index) 
                   ? 'translate-y-0 opacity-100' 

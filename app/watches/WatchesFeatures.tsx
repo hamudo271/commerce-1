@@ -38,7 +38,7 @@ const watchFeatures = [
 
 export default function WatchesFeatures() {
   const [visibleItems, setVisibleItems] = useState(new Set());
-  const refs = useRef([]);
+  const refs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const observers = refs.current.map((ref, index) => {
@@ -80,7 +80,7 @@ export default function WatchesFeatures() {
           {watchFeatures.map((feature, index) => (
             <div
               key={feature.title}
-              ref={el => refs.current[index] = el}
+              ref={el => { refs.current[index] = el; }}
               className={`group bg-white p-8 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer transform ${
                 visibleItems.has(index) 
                   ? 'translate-y-0 opacity-100 hover:-translate-y-2'

@@ -38,7 +38,7 @@ const reviews = [
 export default function CustomerReviews() {
   const [visibleCards, setVisibleCards] = useState(new Set());
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const refs = useRef([]);
+  const refs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const observers = refs.current.map((ref, index) => {
@@ -73,7 +73,7 @@ export default function CustomerReviews() {
           {reviews.map((review, index) => (
             <div
               key={review.id}
-              ref={el => refs.current[index] = el}
+              ref={el => { refs.current[index] = el; }}
               className={`bg-gray-900 p-6 border border-gray-800 transition-all duration-500 ${
                 visibleCards.has(index) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}

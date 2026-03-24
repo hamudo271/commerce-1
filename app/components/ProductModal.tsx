@@ -5,8 +5,23 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { cartStore } from '../lib/cartStore';
 
+interface Product {
+  id: string | number;
+  name: string;
+  price: number;
+  salePrice?: number;
+  originalPrice?: number;
+  image: string;
+  category?: string;
+  brand?: string;
+  colors?: string[];
+  features?: string[];
+  isNew?: boolean;
+  discount?: number;
+}
+
 interface ProductModalProps {
-  product: any;
+  product: Product | null;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -125,7 +140,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
               <div>
                 <h4 className="font-bold text-black mb-3">Color</h4>
                 <div className="flex flex-wrap gap-2">
-                  {product.colors.map((color, index) => (
+                  {product.colors.map((color: string, index: number) => (
                     <button
                       key={index}
                       onClick={() => setSelectedColor(color)}
@@ -165,7 +180,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
               <div>
                 <h4 className="font-bold text-black mb-3">Features</h4>
                 <ul className="space-y-2">
-                  {product.features.map((feature, index) => (
+                  {product.features.map((feature: string, index: number) => (
                     <li key={index} className="flex items-center space-x-2 text-gray-700">
                       <i className="ri-check-line w-4 h-4 flex items-center justify-center text-green-600"></i>
                       <span>{feature}</span>

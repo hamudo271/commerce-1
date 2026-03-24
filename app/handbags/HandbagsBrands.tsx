@@ -51,8 +51,8 @@ const brandLogos = [
 export default function HandbagsBrands() {
   const [selectedBrand, setSelectedBrand] = useState(0);
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
-  const scrollContainerRef = useRef(null);
-  const intervalRef = useRef(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Auto-scroll through brands
   useEffect(() => {
@@ -61,14 +61,16 @@ export default function HandbagsBrands() {
         setSelectedBrand(prev => (prev + 1) % brandLogos.length);
       }, 3000);
     } else {
-      clearInterval(intervalRef.current);
+      if (intervalRef.current) clearInterval(intervalRef.current);
     }
 
-    return () => clearInterval(intervalRef.current);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
   }, [isAutoScrolling]);
 
   // Handle manual brand selection
-  const handleBrandClick = (index) => {
+  const handleBrandClick = (index: number) => {
     setSelectedBrand(index);
     setIsAutoScrolling(false);
     
